@@ -1,15 +1,15 @@
 import { useState } from "react";
 import './restaurantItem.css'
-import Map from "./map";
+import { Modal } from "@mui/material";
 
 const RestaurantItem=({restaurant})=>{
     const {name,location, image, description }=restaurant
-    const [showMap, setShowMap]=useState(false)
+    const [open, setOpen]=useState(false)
     const clickHandler=()=>{
-        setShowMap(true)
+        setOpen(true)
     }
     const clickToCloseHandler=()=>{
-        setShowMap(false)
+        setOpen(false)
     }
     return (
         <div id="item">
@@ -22,12 +22,26 @@ const RestaurantItem=({restaurant})=>{
             <div>
                 <span className="description">{description}</span>
             </div>
-            {showMap && 
+            {/* {showMap && 
             <div className="map-container">
                 <button onClick={clickToCloseHandler} className='button'>X</button>
                 <iframe width="689" height="500" id="gmap_canvas" src={location} frameborder="0" marginheight="0" marginwidth="0"></iframe>
             </div>}
-            {!showMap && <button onClick={clickHandler}>View on Google Map</button>}
+            {!showMap && <button onClick={clickHandler}>View on Google Map</button>} */}
+            <Modal
+                open={open}
+                onClose={clickToCloseHandler}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
+                <div className="map-container">
+                <button onClick={clickToCloseHandler} className='button'>X</button>
+                <iframe width="689" height="500" id="gmap_canvas" src={location} frameborder="0" marginheight="0" marginwidth="0"></iframe>
+                </div>
+            </Modal>
+            <button onClick={clickHandler}>View on Google Map</button>
+
+            
         </div>
     )
 }
