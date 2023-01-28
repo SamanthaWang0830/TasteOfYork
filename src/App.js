@@ -5,7 +5,7 @@ import SpareFood from "./pages/spareFood";
 import StudentsPicks from "./pages/studentsPicks";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import Login from "./pages/Login/LoginPage";
+import LoginPage from "./pages/Login/LoginPage";
 
 const App = () => {
   return (
@@ -15,6 +15,7 @@ const App = () => {
         <Route path='findRestaurants' element={<FindRestaurants/>} />
         <Route path="studentsPicks"  element={<StudentsPicks/>} />
         <Route path="spareFood"  element={<SpareFood/>} />
+        <Route path="login" element={<LoginPage/>} />
       </Route>
     </Routes>
     

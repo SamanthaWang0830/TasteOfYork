@@ -2,7 +2,6 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  overflow: hidden;
 }
 
 .pageContainer {
@@ -20,6 +19,13 @@
 
 .headerContainer h1 {
   color: aliceblue;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  color: white;
+  font-family:Georgia, 'Times New Roman', Times, serif;
 }
 
 footer {
