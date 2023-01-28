@@ -43,7 +43,7 @@ export default function Header() {
       >
         
         
-        <Link to='/studentsPicks'><MenuItem onClick={handleClose}>Restaurants</MenuItem></Link>
+        <Link to='/findRestaurants'><MenuItem onClick={handleClose}>Restaurants</MenuItem></Link>
         <Link to='/studentsPicks'><MenuItem onClick={handleClose}>Student Picks</MenuItem></Link>
         <Link to='/spareFood'><MenuItem onClick={handleClose}>SpareMeals</MenuItem></Link>
         
