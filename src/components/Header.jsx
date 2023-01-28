@@ -48,7 +48,7 @@ export default function Header() {
           >
             <Link
               style={{ textDecoration: "none", color: "black" }}
-              to="/studentsPicks"
+              to="/findRestaurants"
             >
               <MenuItem onClick={handleClose}>Restaurants</MenuItem>
             </Link>

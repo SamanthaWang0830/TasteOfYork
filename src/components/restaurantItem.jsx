@@ -17,7 +17,7 @@ const RestaurantItem=({restaurant})=>{
                 <span className="name">{name}</span>
             </div>
             {showMap && 
-            <Map setShowMap={setShowMap} location={location}/>}
+            <iframe width="689" height="500" id="gmap_canvas" src={location} frameborder="0" marginheight="0" marginwidth="0"></iframe>}
             <button onClick={clickHandler}>View on Google Map</button>
         </div>
     )
