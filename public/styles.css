@@ -15,7 +15,7 @@
   background-color: #1e272e;
   /* margin: auto -16px; */
   padding: 1rem 2rem;
-  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.7);
+  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.3);
 }
 
 .headerContainer h1 {
@@ -29,7 +29,6 @@ footer {
     width: 100%;
     height: 2.5rem;
     padding: 1rem 2rem;
-    box-shadow: 20px 0 0 0 rgba(0, 0, 0, 0.7);
 }
 
 footer p {
