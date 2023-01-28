@@ -1,14 +1,20 @@
-import { Route, Routes } from 'react-router-dom';
-import Navigation from './pages/navigation';
-import Home from './pages/home';
-import FindRestaurants from './pages/findRestaurants';
-import SpareFood from './pages/spareFood';
-import StudentsPicks from './pages/studentsPicks';
-import './App.css';
+import { Route, Routes } from "react-router-dom";
+import Navigation from "./pages/navigation";
+import Home from "./pages/home";
+import FindRestaurants from "./pages/findRestaurants";
+import SpareFood from "./pages/spareFood";
+import StudentsPicks from "./pages/studentsPicks";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
-const App=()=> {
+const App = () => {
   return (
-    <StudentsPicks/>
+    <>
+      <Header/>
+      <StudentsPicks/>
+      <Footer/>
+    </>
+    
   )
 }
 
