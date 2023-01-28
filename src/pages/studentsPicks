@@ -1,5 +1,0 @@
-const studentsPicks=()=> {
-   
-}
-  
-export default studentsPicks;

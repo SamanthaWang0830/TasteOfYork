@@ -3,7 +3,7 @@ import Navigation from './pages/navigation';
 import Home from './pages/home';
 import FindRestaurants from './pages/findRestaurants';
 import SpareFood from './pages/spareFood';
-import studentsPicks from './pages/studentsPicks';
+import StudentsPicks from './pages/studentsPicks';
 import './App.css';
 
 const App=()=> {
@@ -14,7 +14,7 @@ const App=()=> {
         <Route path='findRestaurants' element={<FindRestaurants/>}/> 
         <Route path='sparefood' element={<SpareFood/>}/> 
         <Route path='sparefood' element={<SpareFood/>}/> 
-        <Route path='studentspicks' element={<studentsPicks/>}/> 
+        <Route path='studentspicks' element={<StudentsPicks/>}/> 
       </Route>
     </Routes>
   )
