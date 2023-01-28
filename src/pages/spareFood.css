@@ -1,0 +1,12 @@
+#content {
+    display: block;
+    padding: 5%;
+    font-size: larger;
+    border-style: solid;
+    border-color: black;
+}
+
+#slogan {
+    font-size:small;
+    font-style: italic;
+}
