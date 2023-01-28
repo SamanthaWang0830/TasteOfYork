@@ -1,5 +1,3 @@
-export default SpareFood;
-
 import './spareFood.jsx'
 const SpareFood=()=> {
    return (
@@ -21,5 +19,4 @@ const SpareFood=()=> {
     </div>
    )
 }
-
-export default SpareFood
+export default SpareFood;
