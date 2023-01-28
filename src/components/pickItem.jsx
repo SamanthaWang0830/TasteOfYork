@@ -1,7 +1,6 @@
 import { useState } from "react"
 import './pickItem.css'
 const PickItem=({pick})=>{
-    console.log(pick)
     const {name,description, image,like,dislike}= pick
     const [numberOfLike,setNumberOfLike]=useState(like)
     const [numberOfDislike,setNumberOfDislike]=useState(dislike)

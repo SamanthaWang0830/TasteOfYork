@@ -3,6 +3,7 @@ import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import MenuIcon from '@mui/icons-material/Menu';
+import { Outlet , Link} from "react-router-dom";
 
 export default function Header() {
   // Dropdown menu functionalities
@@ -16,8 +17,10 @@ export default function Header() {
   };
 
   return (
+    <>
     <header class="headerContainer">
-      <h1>Taste of York</h1>
+      <Link to='/'><h1>Taste of York</h1></Link>
+      
 
       {/* Add the burger menu */}
       <Button
@@ -38,11 +41,15 @@ export default function Header() {
           "aria-labelledby": "menu-button",
         }}
       >
-        <MenuItem onClick={handleClose}>Home</MenuItem>
-        <MenuItem onClick={handleClose}>Restaurants</MenuItem>
-        <MenuItem onClick={handleClose}>Student Picks</MenuItem>
-        <MenuItem onClick={handleClose}>SpareMeals</MenuItem>
+        
+        
+        <Link to='/studentsPicks'><MenuItem onClick={handleClose}>Restaurants</MenuItem></Link>
+        <Link to='/studentsPicks'><MenuItem onClick={handleClose}>Student Picks</MenuItem></Link>
+        <Link to='/spareFood'><MenuItem onClick={handleClose}>SpareMeals</MenuItem></Link>
+        
       </Menu>
     </header>
+    <Outlet/>
+    </>
   );
 }
