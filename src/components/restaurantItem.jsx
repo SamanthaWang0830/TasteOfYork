@@ -20,8 +20,10 @@ const RestaurantItem=({restaurant})=>{
                 <span className="description">{description}</span>
             </div>
             {showMap && 
-            <Map setShowMap={setShowMap} location={location}/>}
-            <button id="map" onClick={clickHandler}>View on Maps</button>
+            
+            <iframe width="689" height="500" id="gmap_canvas" src={location} frameborder="0" marginheight="0" marginwidth="0"></iframe>}
+            <button onClick={clickHandler}>View on Google Map</button>
+            
         </div>
     )
 }
