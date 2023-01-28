@@ -4,9 +4,15 @@ img {
     padding: 5%;
     float: left;
     display: inline;
-    
 }
 
-#item {
-    display: block;
+.action-btns {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card {
+    margin: 1rem;
+    padding: 0.5rem;
+    padding-bottom: 0;
 }

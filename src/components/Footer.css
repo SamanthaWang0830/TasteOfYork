@@ -2,9 +2,15 @@ footer {
     font-weight: bold;
     color:LightSlateGrey;
     padding:10px;
-    text-align:center;
-    left: 0;
+    text-align: center;
     bottom: 0;
-    width: 100%;
-    position: fixed;
+    width: auto;
+    position: relative;
+}
+p{
+    display: table-cell;
+    font-size: 0.7em;
+    text-align: center;
+    bottom: 0;
+    vertical-align: bottom;
 }

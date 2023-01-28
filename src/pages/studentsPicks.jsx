@@ -52,14 +52,14 @@ const StudentsPicks = () => {
   };
 
   return (
-    <div className="picks-container">
-      <div id="title">
-        <h1>Student Picks</h1>
-        <h2> See what others are eating.</h2>
+    <div className="page-container">
+      <div id="first-container">
+        <h1 id="title" >Student Picks</h1>
+        <h2> See what others are eating!</h2>
       </div>
 
       <div id="content">
-        <button onClick={clickHandler} className="clickButton">
+        {/* <button onClick={clickHandler} className="clickButton">
           <BiBookAdd />
         </button>
         {form && (
@@ -68,9 +68,8 @@ const StudentsPicks = () => {
             <input type="text" placeholder="enter the description" />
             <button type="submit">ADD YOUR PICK</button>
           </form>
-        )}
-
-        <div class="pickItem">
+        )} */}
+        <div class="items">
           {DUMMY_PICKS.map((pick) => (
             <PickItem key={pick.id} pick={pick} />
           ))}

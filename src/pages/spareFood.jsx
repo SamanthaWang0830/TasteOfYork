@@ -1,4 +1,4 @@
-import './spareFood.jsx'
+import './spareFood.css'
 const SpareFood=()=> {
    return (
     <div className="restaurant-container">
