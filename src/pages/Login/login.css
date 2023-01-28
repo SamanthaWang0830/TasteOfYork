@@ -11,6 +11,11 @@
   text-align: center;
 } */
 
+.btn {
+  background-color: black !important;
+  color: white !important;
+}
+
 .body {
   display: flex;
   width: 75%;
@@ -23,7 +28,6 @@
 
   background-color: #be2e44;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
-
 }
 .loginForm {
   padding: 1rem;
@@ -43,6 +47,11 @@
   text-align: center;
   margin: 1rem 0;
   font-size: 2rem;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.textField {
+  color: white;
 }
 
 .btns {
