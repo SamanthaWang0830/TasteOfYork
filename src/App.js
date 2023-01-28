@@ -8,15 +8,7 @@ import './App.css';
 
 const App=()=> {
   return (
-    <Routes>
-      <Route path='/' element={<Navigation/>}>
-        <Route index element={<Home/>}/>
-        <Route path='findRestaurants' element={<FindRestaurants/>}/> 
-        <Route path='sparefood' element={<SpareFood/>}/> 
-        <Route path='sparefood' element={<SpareFood/>}/> 
-        <Route path='studentspicks' element={<StudentsPicks/>}/> 
-      </Route>
-    </Routes>
+    <StudentsPicks/>
   )
 }
 
