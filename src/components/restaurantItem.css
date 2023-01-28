@@ -7,24 +7,13 @@ img {
     width: 20px;
     height: 20px;
 }
-
-.description {
-    font-size: smaller;
-    font-style: italic;
+.map-container{
+    position: relative;
+    width:700px;
+    margin:0 auto;
 }
-#map {
-    text-decoration: underline;
-    padding: 0.5%;
-    background-color: transparent;
-    border: transparent;
+.button{
+    position: absolute;
+    right:0;
+    top: 0;
 }
-
-/*
-#item {
-    float: left;
-    width: 50%;
-    height: 50%;
-    padding: 2px;
-    border: 2px solid red; 
-}  
-*/

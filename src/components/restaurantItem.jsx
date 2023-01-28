@@ -8,6 +8,9 @@ const RestaurantItem=({restaurant})=>{
     const clickHandler=()=>{
         setShowMap(true)
     }
+    const clickToCloseHandler=()=>{
+        setShowMap(false)
+    }
     return (
         <div id="item">
             <div>
@@ -20,10 +23,11 @@ const RestaurantItem=({restaurant})=>{
                 <span className="description">{description}</span>
             </div>
             {showMap && 
-            
-            <iframe width="689" height="500" id="gmap_canvas" src={location} frameborder="0" marginheight="0" marginwidth="0"></iframe>}
-            <button onClick={clickHandler}>View on Google Map</button>
-            
+            <div className="map-container">
+                <button onClick={clickToCloseHandler} className='button'>X</button>
+                <iframe width="689" height="500" id="gmap_canvas" src={location} frameborder="0" marginheight="0" marginwidth="0"></iframe>
+            </div>}
+            {!showMap && <button onClick={clickHandler}>View on Google Map</button>}
         </div>
     )
 }
