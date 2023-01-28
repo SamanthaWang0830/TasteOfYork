@@ -1,4 +1,6 @@
 import { useState } from "react"
+import { AiTwotoneLike } from 'react-icons/ai';
+import { AiTwotoneDislike } from 'react-icons/ai';
 import './pickItem.css'
 const PickItem=({pick})=>{
     const {name,description, image,like,dislike}= pick
@@ -22,8 +24,8 @@ const PickItem=({pick})=>{
                 <span>{description}</span>
             </div>
             <div>
-                <button onClick={likeHandler}>{numberOfLike}</button>
-                <button onClick={dislikeHandler}>{numberOfDislike}</button>
+                <button onClick={likeHandler}><AiTwotoneLike/>{numberOfLike}</button>
+                <button onClick={dislikeHandler}><AiTwotoneDislike/>{numberOfDislike}</button>
             </div>
         </div>
     )

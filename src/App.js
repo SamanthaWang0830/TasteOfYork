@@ -4,8 +4,6 @@ import FindRestaurants from "./pages/findRestaurants";
 import SpareFood from "./pages/spareFood";
 import StudentsPicks from "./pages/studentsPicks";
 import Header from "./components/Header";
-import Footer from "./components/Footer";
-import RestaurantItem from "./components/restaurantItem";
 
 
 import LoginPage from "./pages/Login/LoginPage";

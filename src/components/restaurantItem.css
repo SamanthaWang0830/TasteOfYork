@@ -1,3 +1,4 @@
+
 img {
     width: 60%;
 }
@@ -11,6 +12,7 @@ img {
     position: relative;
     width:700px;
     margin:0 auto;
+    z-index: 99;
 }
 .button{
     position: absolute;
