@@ -5,6 +5,7 @@ import SpareFood from "./pages/spareFood";
 import StudentsPicks from "./pages/studentsPicks";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import Login from "./pages/Login/LoginPage";
 
 const App = () => {
   return (
