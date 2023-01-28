@@ -5,7 +5,6 @@ import { grey } from "@mui/material/colors";
 
 export default function Login() {
   const white = grey[50];
-
   return (
     <div className="body">
       <div class="login-box">
@@ -38,7 +37,6 @@ export default function Login() {
         >
           Login
         </Button>
-
         <Button
           className="btn"
           size="large"
@@ -49,6 +47,7 @@ export default function Login() {
         >
           Create Account
         </Button>
+        
       </div>
     </div>
   );
