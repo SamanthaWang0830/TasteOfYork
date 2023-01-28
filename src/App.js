@@ -6,11 +6,13 @@ import SpareFood from "./pages/spareFood";
 import StudentsPicks from "./pages/studentsPicks";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import RestaurantItem from "./components/restaurantItem";
 
 const App = () => {
   return (
     <div>
       <Header/>
+        <FindRestaurants/>
     {/* // <Routes>
     //   <Route path="/" element={<Navigation />}>
     //     <Route index element={<Home />} />
