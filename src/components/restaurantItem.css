@@ -2,3 +2,13 @@
     width: 20px;
     height: 20px;
 }
+.map-container{
+    position: relative;
+    width:700px;
+    margin:0 auto;
+}
+.button{
+    position: absolute;
+    right:0;
+    top: 0;
+}
