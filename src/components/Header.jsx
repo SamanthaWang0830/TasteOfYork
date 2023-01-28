@@ -19,7 +19,7 @@ export default function Header() {
   return (
     <>
     <header class="headerContainer">
-      <Link to='/'><h1>Taste of York</h1></Link>
+      <Link style={{ textDecoration: 'none' }} to='/'><h1>Taste of York</h1></Link>
       
 
       {/* Add the burger menu */}
@@ -41,12 +41,9 @@ export default function Header() {
           "aria-labelledby": "menu-button",
         }}
       >
-        
-        
-        <Link to='/studentsPicks'><MenuItem onClick={handleClose}>Restaurants</MenuItem></Link>
-        <Link to='/studentsPicks'><MenuItem onClick={handleClose}>Student Picks</MenuItem></Link>
-        <Link to='/spareFood'><MenuItem onClick={handleClose}>SpareMeals</MenuItem></Link>
-        
+        <Link style={{ textDecoration: 'none', color:"black" }} to='/findRestaurants'><MenuItem onClick={handleClose}>Restaurants</MenuItem></Link>
+        <Link style={{ textDecoration: 'none', color:"black" }} to='/studentsPicks'><MenuItem onClick={handleClose}>Student Picks</MenuItem></Link>
+        <Link style={{ textDecoration: 'none', color:"black" }} to='/spareFood'><MenuItem onClick={handleClose}>SpareMeals</MenuItem></Link>
       </Menu>
     </header>
     <Outlet/>
