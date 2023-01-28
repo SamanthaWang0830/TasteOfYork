@@ -1,0 +1,13 @@
+img {
+    width: 50%;
+    height: 50%;
+    padding: 5%;
+    float: left;
+    text-align: center;
+    display: flex
+    
+}
+
+#item {
+    display: block;
+}

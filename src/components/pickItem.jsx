@@ -11,7 +11,7 @@ const PickItem=({pick})=>{
         setNumberOfDislike(pre=>pre+1)
     }
     return (
-        <div>
+        <div id="item">
             <div className="image">
                 <img src={image} alt={name} />
             </div>
