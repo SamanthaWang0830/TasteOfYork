@@ -1,26 +1,28 @@
-import { useRef,useEffect } from "react"
-import ReactDom from 'react-dom'
+import { useMemo } from "react"
 import './map.css'
+import { GoogleMap , useLoadScript, MarkerF} from "@react-google-maps/api"
+
 const Map=({setShowMap, location})=>{
-    const mapRef=useRef()
-
-    useEffect(()=>{
-        const map= new window.google.maps.Map(mapRef.current,{
-            center:location,
-            zoom:18,
-        })
-        new window.google.maps.Marker({position:location,map:map})
+    const {isLoaded}= useLoadScript({
+        googleMapsApiKey:process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY
     })
-
-    const closeMapHandler=()=>{
+    const center= useMemo(()=>(location),[])
+    const clickHandler=()=>{
         setShowMap(false)
     }
-    const content=(
-        <div className="map">
-            <button onClick={closeMapHandler}>X</button>
-            <div ref={mapRef}></div>
+    if(!isLoaded){
+        return (
+            <div>Loading ...</div>
+        )
+    }
+    return (
+        <div>
+            <button onClick={clickHandler}>X</button>
+            <GoogleMap zoom={18} center={center} mapContainerClassName='map'>
+                <MarkerF position={center}/>
+            </GoogleMap>
         </div>
+        
     )
-    return ReactDom.createPortal(content,document.getElementById('modal-hook'))
 }
 export default Map

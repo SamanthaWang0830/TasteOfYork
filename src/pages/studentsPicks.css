@@ -1,12 +1,17 @@
-.picks-container{
-    height: 100%;
-    width: 100%;
+* {
+    text-align: center;
 }
-#p1, #p2, #p3, #p4{
+.picks-container{
     margin: auto;
-    width: 10px;
-    height: 10px;
- 
-
+    height: 100%;
+    width: 70%;
+}
+#content, #title
+{   margin: auto;
+    display: block;
+    padding: 5%;
+    font-size: larger;
+    border-style: solid;
+    border-color: black;
 
 }
