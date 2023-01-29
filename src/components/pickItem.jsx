@@ -1,8 +1,15 @@
 import { useState } from "react";
 import "./pickItem.css";
-import { Button, Card, CardActions, CardContent, CardMedia, Typography } from "@mui/material";
-import InsertEmoticonIcon from '@mui/icons-material/InsertEmoticon';
-import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
+import {
+  Button,
+  Card,
+  CardActions,
+  CardContent,
+  CardMedia,
+  Typography,
+} from "@mui/material";
+import InsertEmoticonIcon from "@mui/icons-material/InsertEmoticon";
+import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
 import { maxHeight } from "@mui/system";
 
 const PickItem = ({ pick }) => {
@@ -34,7 +41,9 @@ const PickItem = ({ pick }) => {
   // )
   return (
     <Card className="card" sx={{ maxWidth: 400 }}>
-      <CardMedia component="img" height="250" image={image} alt={name} />
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <CardMedia component="img" height="250" image={image} alt={name} />
+      </div>
       <CardContent>
         <Typography align="left" gutterBottom variant="h5" component="div">
           {name}
@@ -43,9 +52,13 @@ const PickItem = ({ pick }) => {
           {description}
         </Typography>
       </CardContent>
-      <CardActions className="action-btns" >
-        <Button id="happy-btn" size="small"><InsertEmoticonIcon/></Button>
-        <Button id="sad-btn" size="small"><SentimentVeryDissatisfiedIcon/></Button>
+      <CardActions className="action-btns">
+        <Button id="happy-btn" size="small">
+          <InsertEmoticonIcon />
+        </Button>
+        <Button id="sad-btn" size="small">
+          <SentimentVeryDissatisfiedIcon />
+        </Button>
       </CardActions>
     </Card>
   );

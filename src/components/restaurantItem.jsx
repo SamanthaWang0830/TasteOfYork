@@ -3,7 +3,7 @@ import './restaurantItem.css'
 import { Modal } from "@mui/material";
 
 const RestaurantItem=({restaurant})=>{
-    const {name,location, image, description }=restaurant
+    const {name,location, image, address, hours }=restaurant
     const [open, setOpen]=useState(false)
     const clickHandler=()=>{
         setOpen(true)
@@ -20,7 +20,10 @@ const RestaurantItem=({restaurant})=>{
                 <span className="name">{name}</span>
             </div>
             <div>
-                <span className="description">{description}</span>
+                <span className="address">{address}</span>
+            </div>
+            <div>
+                <span className="hours">{hours}</span>
             </div>
             {/* {showMap && 
             <div className="map-container">
@@ -39,7 +42,7 @@ const RestaurantItem=({restaurant})=>{
                 <iframe width="689" height="500" id="gmap_canvas" src={location} frameborder="0" marginheight="0" marginwidth="0"></iframe>
                 </div>
             </Modal>
-            <button onClick={clickHandler}>View on Google Map</button>
+            <button id="map" onClick={clickHandler}>View on Google Map</button>
 
             
         </div>
