@@ -23,18 +23,13 @@
     border-color: white;
 }
 
-.name {
-    font-family: Arial, Helvetica, sans-serif;
+#content {
+  display: grid;
+  margin: 0;
+  grid-template-columns: 50% 50%;
 }
 
-.address {
-    font-size: smaller;
-    font-style: italic;
-}
-
-.hours {
-    font-size: smaller;
-}
-.map{
-    background-color: #fff;
+.restaurant-list {
+    display: flex;
+    justify-content: center;
 }
