@@ -42,7 +42,7 @@ const RestaurantItem=({restaurant})=>{
                 <iframe width="689" height="500" id="gmap_canvas" src={location} frameborder="0" marginheight="0" marginwidth="0"></iframe>
                 </div>
             </Modal>
-            <button id="map" onClick={clickHandler}>View on Google Map</button>
+            <button className="map" onClick={clickHandler}>View on Google Map</button>
 
             
         </div>
