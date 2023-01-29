@@ -19,7 +19,7 @@ export default function Header() {
   return (
     <>
       <header class="headerContainer">
-        <Link style={{ textDecoration: "none" }} to="/">
+        <Link style={{ textDecoration: "none" }} to="/home">
           <h1>Taste of York</h1>
         </Link>
 

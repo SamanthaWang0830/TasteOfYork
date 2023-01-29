@@ -19,4 +19,5 @@ const SpareFood=()=> {
     </div>
    )
 }
-export default SpareFood;
+
+export default SpareFood
