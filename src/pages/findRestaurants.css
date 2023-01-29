@@ -1,6 +1,5 @@
 * {
     text-align: center;
-    color: white;
 }
 
 .restaurant-container{
@@ -9,7 +8,17 @@
     width: 75%;
 }
 
-#title, #content{
+#title {
+    color: black;
+    display: block;
+    padding: 5%;
+    font-size: larger;
+    border-style: solid;
+    border-color: black;
+}
+
+#content {
+    color: white;
     display: block;
     padding: 5%;
     font-size: larger;
