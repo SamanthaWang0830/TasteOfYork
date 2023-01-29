@@ -1,21 +1,26 @@
 * {
-  text-align: center;
+    text-align: center;
+}
+.restaurant-container{
+    margin: auto;
+    height: 100%;
+    width: 75%;
 }
 
-.restaurant-container {
-  margin: auto;
-  height: 100%;
-  width: 75%;
+#title{
+    display: block;
+    padding: 5%;
+    font-size: larger;
+    border-style: solid;
+    border-color: black;
 }
-
-#title,
-#content {
-  color: black;
-  /* display: block; */
-  /* padding: 5%; */
-  font-size: larger;
-  border-style: solid;
-  border-color: black;
+ #content{
+    color: white;
+    display: block;
+    padding: 5%;
+    font-size: larger;
+    border-style: solid;
+    border-color: white;
 }
 
 #content {
