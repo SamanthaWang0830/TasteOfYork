@@ -1,29 +1,26 @@
 * {
     text-align: center;
 }
-
 .restaurant-container{
     margin: auto;
     height: 100%;
     width: 75%;
 }
 
-#title {
-    color: black;
+#title{
     display: block;
     padding: 5%;
     font-size: larger;
     border-style: solid;
     border-color: black;
 }
-
-#content {
+ #content{
     color: white;
     display: block;
     padding: 5%;
     font-size: larger;
     border-style: solid;
-    border-color: black;
+    border-color: white;
 }
 
 .name {
@@ -37,4 +34,7 @@
 
 .hours {
     font-size: smaller;
+}
+.map{
+    background-color: #fff;
 }

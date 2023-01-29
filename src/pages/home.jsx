@@ -4,20 +4,21 @@ import logo from '../pages/73E53A21-8304-4F67-9CDF-DD49529E11A7.JPG'
 
 const Home=()=> {
    return (
-    <div>
-      <div className="logo-container">
+    <div className="all">
+      {/* <div className="logo-container">
          <img src={logo}  alt="logo" />
-      </div>
-      <Link to="/findRestaurants" style={{ textDecoration: "none", color: "black" }}>
-         <div>Find Restaurant</div>
+      </div> */}
+          <Link to="/findRestaurants" style={{ textDecoration: "none", color: "black" }}>
+         <div className="one"> <h1>Find Restaurants on Campus</h1></div>
       </Link>
       <Link to="/studentsPicks" style={{ textDecoration: "none", color: "black" }}>
-         <div>Student Picks</div>
+         <div className="two"><h5>Get Suggestions From The </h5><h1>Student Picks</h1></div>
       </Link>
       <Link to="/spareFood" style={{ textDecoration: "none", color: "black" }}>
-         <div>SpareMeals</div>
+         <div className="three"><h1>SpareMeals</h1> <h5>A New Way to Combat Food Waste</h5></div>
       </Link>
-    </div>
+      </div>
+
    )
 }
 export default Home;

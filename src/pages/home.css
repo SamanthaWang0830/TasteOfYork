@@ -1,8 +1,30 @@
-.logo-container{
-    width: 100px;
-    height: 100px;
+.all {
+    margin: auto;
+    width: 75%;
+}
+/* .logo-container{
+    align-content: center;
+    width: 600px;
+    height: 400px;
+    margin: auto;
 }
 .logo{
     width: 100px;
     height: 100px;
+} */
+
+.one {
+    padding: 10%;
+    color: white;
+    background-color: black;
+}
+.two {
+    padding: 10%;
+    background-color: rgb(167, 35, 35);
+}
+
+.three {
+    padding: 10%;
+    color: white;
+    background-color: black;
 }
