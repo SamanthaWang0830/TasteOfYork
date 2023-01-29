@@ -4,7 +4,7 @@ const DUMMY_RESTAURANTS=[
     {
         id:'r1',
         image:"https://lh5.googleusercontent.com/p/AF1QipOYz7v5IXjOQ0KjI2oPqLOt2M211HKCjnC_LG6V=w408-h271-k-no",
-        name:"z-teca Mexican Eatery ",
+        name:"Z-teca Mexican Eatery ",
         address:"80 York Blvd, York Lanes Mall",
         hours:"12 - 7 p.m.",
         location:"https://maps.google.com/maps?q=z-teca%20Mexican%20Eatery%20york%20univeristy&t=&z=17&ie=UTF8&iwloc=&output=embed"

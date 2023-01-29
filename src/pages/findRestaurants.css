@@ -1,31 +1,30 @@
 * {
-    text-align: center;
-    color: white;
+  text-align: center;
 }
 
-.restaurant-container{
-    margin: auto;
-    height: 100%;
-    width: 75%;
+.restaurant-container {
+  margin: auto;
+  height: 100%;
+  width: 75%;
 }
 
-#title, #content{
-    display: block;
-    padding: 5%;
-    font-size: larger;
-    border-style: solid;
-    border-color: black;
+#title,
+#content {
+  color: black;
+  /* display: block; */
+  /* padding: 5%; */
+  font-size: larger;
+  border-style: solid;
+  border-color: black;
 }
 
-.name {
-    font-family: Arial, Helvetica, sans-serif;
+#content {
+  display: grid;
+  margin: 0;
+  grid-template-columns: 50% 50%;
 }
 
-.address {
-    font-size: smaller;
-    font-style: italic;
-}
-
-.hours {
-    font-size: smaller;
+.restaurant-list {
+    display: flex;
+    justify-content: center;
 }

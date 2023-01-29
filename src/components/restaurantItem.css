@@ -7,6 +7,7 @@ img {
     width: 20px;
     height: 20px;
 }
+
 .map-container{
     position: relative;
     width:700px;
@@ -21,4 +22,9 @@ img {
 #map {
     text-decoration: underline;
     background-color: transparent;
+}
+
+.card-content {
+    color: black;
+    display: grid;
 }

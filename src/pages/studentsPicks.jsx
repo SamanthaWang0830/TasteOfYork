@@ -54,8 +54,8 @@ const StudentsPicks = () => {
   return (
     <div className="page-container">
       <div id="first-container">
-        <h1 id="title" >Student Picks</h1>
-        <h2> See what others are eating!</h2>
+        <h1 id="titleStudentPicks">Student Picks</h1>
+        <h2>See what others are eating!</h2>
       </div>
 
       <div id="content">

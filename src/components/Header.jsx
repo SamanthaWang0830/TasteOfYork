@@ -26,7 +26,7 @@ export default function Header() {
         {/* Add the burger menu */}
         <div className="header-right">
           <h3>
-            <Link to="/login" >Login / Sign Up</Link>
+            <Link style={{textDecoration: 'none'}} to="/login" >Login / Sign Up</Link>
           </h3>
           <Button
             id="menu-button"
