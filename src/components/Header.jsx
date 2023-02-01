@@ -58,12 +58,6 @@ export default function Header() {
             >
               <MenuItem onClick={handleClose}>Student Picks</MenuItem>
             </Link>
-            <Link
-              style={{ textDecoration: "none", color: "black" }}
-              to="/spareFood"
-            >
-              <MenuItem onClick={handleClose}>SpareMeals</MenuItem>
-            </Link>
           </Menu>
         </div>
       </header>
