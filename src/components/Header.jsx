@@ -6,6 +6,8 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { Outlet, Link } from "react-router-dom";
 
 export default function Header() {
+
+
   // Dropdown menu functionalities
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -26,7 +28,7 @@ export default function Header() {
         {/* Add the burger menu */}
         <div className="header-right">
           <h3>
-            <Link style={{textDecoration: 'none'}} to="/login" >Login / Sign Up</Link>
+            <Link style={{textDecoration: 'none', color:'gray'}} to="/login" >Auth</Link>
           </h3>
           <Button
             id="menu-button"

@@ -1,7 +1,7 @@
-import "./studentsPicks.css";
+import { Box, Grid, Typography  } from "@mui/material";
 import { useState } from "react";
-import { BiBookAdd } from "react-icons/bi";
 import PickItem from "../components/pickItem";
+import {AiFillFolderAdd} from 'react-icons/ai';
 
 const DUMMY_PICKS = [
   {
@@ -43,7 +43,7 @@ const DUMMY_PICKS = [
 ];
 const StudentsPicks = () => {
   const [form, setForm] = useState(false);
-  const clickHandler = () => {
+  const openFormHandler = () => {
     setForm(true);
   };
   const sumbitHanlder = (e) => {
@@ -52,31 +52,56 @@ const StudentsPicks = () => {
   };
 
   return (
-    <div className="page-container">
-      <div id="first-container">
-        <h1 id="titleStudentPicks">Student Picks</h1>
-        <h2>See what others are eating!</h2>
-      </div>
-
-      <div id="content">
-        {/* <button onClick={clickHandler} className="clickButton">
-          <BiBookAdd />
-        </button>
-        {form && (
-          <form onSubmit={sumbitHanlder}>
-            <input type="text" placeholder="enter the name" />
-            <input type="text" placeholder="enter the description" />
-            <button type="submit">ADD YOUR PICK</button>
-          </form>
-        )} */}
-        <div class="items">
-          {DUMMY_PICKS.map((pick) => (
-            <PickItem key={pick.id} pick={pick} />
-          ))}
-        </div>
-      </div>
-    </div>
-  );
+    <Box 
+      sx={{ 
+        flexGrow: 1,
+        marginX:{xs:2,sm:4,md:6},
+      }}
+    >
+      <Grid  
+        sx={{
+          display: 'flex',
+          justifyContent: "space-between",
+          backgroundColor:'error.dark',
+          paddingX:6,
+          paddingTop:1,
+        }}
+      >
+        <Grid item xs={12} sm={10}>
+          <Typography
+            component="h1" 
+            variant="h3"
+            sx={{
+              fontFamily:"Trebuchet MS"
+            }}
+          >Favorite Meals</Typography>
+        </Grid>
+        
+        <Grid item xs={12} sm={2}><AiFillFolderAdd size={40} onClick={openFormHandler}/></Grid>
+      </Grid>
+      
+      <Grid 
+        container 
+        sx={{
+          display: 'flex',
+          justifyContent: "space-around"
+        }}
+      >
+        {DUMMY_PICKS.map((pick) => (
+          <Grid 
+            xs={12} sm={6} 
+            key={pick.id}
+            sx={{
+              display:'flex',
+              justifyContent:'center'
+            }}
+          >
+            <PickItem pick={pick} />
+          </Grid>
+        ))}
+      </Grid>
+  </Box>
+  )
 };
 
 export default StudentsPicks;
