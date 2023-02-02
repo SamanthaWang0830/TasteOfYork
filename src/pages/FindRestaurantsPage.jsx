@@ -1,5 +1,5 @@
-import './findRestaurants.css'
 import RestaurantItem from "../components/restaurantItem";
+import { Box, Grid, Typography  } from "@mui/material";
 const DUMMY_RESTAURANTS=[
     {
         id:'r1',
@@ -28,23 +28,57 @@ const DUMMY_RESTAURANTS=[
 ]
 
 const FindRestaurants=()=> {
+   
    return (
-    <div className="restaurant-container">
-        <div id='title'> 
-            <h1>Find </h1> 
-            <h1>A </h1> 
-            <h1>Restaurant </h1> 
-        </div>
- 
-        <div id='content'>
-            {
-           DUMMY_RESTAURANTS.map((restaurant)=>(
-            <RestaurantItem key={restaurant.id} restaurant={restaurant}/>
-           )) 
-            }
-        </div>
+    <Box 
+      sx={{ 
+        flexGrow: 1,
+        marginX:{xs:2,sm:4,md:6},
+      }}
+    >
+      <Grid  
+        sx={{
+          display: 'flex',
+          justifyContent: "space-between",
+          backgroundColor:'error.dark',
+          paddingX:6,
+          paddingTop:1,
+        }}
+      >
+        <Grid item xs={12} sm={10}>
+          <Typography
+            component="h1" 
+            variant="h3"
+            sx={{
+              fontFamily:"Gill Sans"
+            }}
+          >Restaurants On Campus</Typography>
+        </Grid>
         
-    </div>
+        {/* <Grid item xs={12} sm={2}><AiFillFolderAdd size={40} onClick={openFormHandler}/></Grid> */}
+      </Grid>
+      
+      <Grid 
+        container 
+        sx={{
+          display: 'flex',
+          justifyContent: "space-around"
+        }}
+      >
+        {DUMMY_RESTAURANTS.map((restaurant) => (
+          <Grid 
+            xs={12} sm={6} 
+            key={restaurant.id}
+            sx={{
+              display:'flex',
+              justifyContent:'center'
+            }}
+          >
+            <RestaurantItem restaurant={restaurant} />
+          </Grid>
+        ))}
+      </Grid>
+    </Box>
    )
 } 
 export default FindRestaurants;

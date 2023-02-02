@@ -5,25 +5,7 @@
 }
 
 .pageContainer {
-  padding: 50rem;
+  padding: 20rem;
 }
 
-.headerContainer {
-  display: flex;
-  justify-content: space-between;
-  background-color: black;
-  /* margin: auto -16px; */
-  padding: 1rem 2rem;
-  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.3);
-}
 
-.headerContainer h1 {
-  color: aliceblue;
-}
-
-.header-right {
-  display: flex;
-  align-items: center;
-  color: white;
-  font-family:Georgia, 'Times New Roman', Times, serif;
-}
