@@ -45,7 +45,12 @@ export default function Header() {
         <div className="header-right">
           {
             authSucceed? (
-              <Button onClick={clickLogoutHandler}>Log Out</Button>
+              <>
+                <Button onClick={clickLogoutHandler}>Log Out</Button>
+                <h4>
+                  <Link style={{textDecoration: 'none', color:'gray'}} to="/myMeals" >MyMeals</Link>
+                </h4>
+              </>
             ):(
               <h3>
                 <Link style={{textDecoration: 'none', color:'gray'}} to="/login" >Auth</Link>

@@ -4,6 +4,7 @@ import FindRestaurantsPage from "./pages/FindRestaurantsPage";
 import StudentsPicksPage from "./pages/StudentsPicksPage";
 import Header from "./components/Header/Header";
 import LoginPage from "./pages/Login/LoginPage";
+import MyMealsPage from "./pages/MyMealsPage.jsx";
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
         <Route path='findRestaurants' element={<FindRestaurantsPage/>} />
         <Route path="studentsPicks"  element={<StudentsPicksPage/>} />
         <Route path="login" element={<LoginPage/>} />
+        <Route path="myMeals" element={<MyMealsPage/>} />
       </Route>
     </Routes>
     

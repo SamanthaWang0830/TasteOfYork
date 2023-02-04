@@ -59,6 +59,31 @@ export default function Login() {
           email: email,
           password:password
         }
+        console.log(form)
+        try {
+          const response= await fetch('http://localhost:7000/api/users/login',{
+            method:"POST",
+            headers:{
+              "Content-Type":"application/json"
+            },
+            body:JSON.stringify({
+              email:form.email,
+              password:form.password
+            })
+          })
+          const responseData= await response.json()
+          if(!response.ok){
+            throw new Error(responseData.message)
+          }
+          console.log(responseData)
+          setIsLoading(false)
+          setAuthSucceed(true)
+        } catch (err) {
+          console.log(err)
+          setIsLoading(false)
+          setLoadingError(err.message || 'Something went wrong, please try it again')
+        }
+        setAlertOpen(true)
       }else{
         form ={
           name:name,
@@ -74,7 +99,7 @@ export default function Login() {
             body:JSON.stringify({
               name:form.name,
               email:form.email,
-              password:form.email
+              password:form.password
             })
           })
           const responseData= await response.json()
