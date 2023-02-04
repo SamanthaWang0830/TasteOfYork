@@ -12,6 +12,7 @@ const DUMMY_PICKS = [
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRn3OWGFMaMFqNrGVS9uWuMcArGBApGOESM6g&usqp=CAU",
     like: 100,
     dislike: 99,
+    creator:'u1'
   },
   {
     id: "p2",
@@ -21,6 +22,7 @@ const DUMMY_PICKS = [
       "https://images.sirved.com/ChIJAb34zTouK4gR_ulVKGVTgOU/5aaa847a36820.jpg",
     like: 10,
     dislike: 1,
+    creator:'u1'
   },
   {
     id: "p3",
@@ -30,6 +32,7 @@ const DUMMY_PICKS = [
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5TzOBxCllODUX5xk_WVuXasbXkTEvCvOdeg&usqp=CAU",
     like: 21,
     dislike: 0,
+    creator:'u1'
   },
   {
     id: "p4",
@@ -39,6 +42,7 @@ const DUMMY_PICKS = [
       "https://canadify.com/wp-content/uploads/2021/06/Tim-Hortons-Offers-Free-Donut-With-Any-Beverage-Purchase-In-The-App-On-June-4-2021-678x381.jpg",
     like: 10,
     dislike: 0,
+    creator:'u2'
   },
 ];
 const StudentsPicks = () => {
