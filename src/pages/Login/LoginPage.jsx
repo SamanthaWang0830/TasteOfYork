@@ -2,16 +2,17 @@ import React,{useState, useContext} from "react";
 import { TextField, Button, Box , Typography, CircularProgress, Snackbar, Alert} from "@mui/material";
 import { validateEmail, validatePassword } from './validation';
 import { UserContext } from "../../contexts/user-context";
+import useHttpClient from '../../hooks/http-hook'
+
 
 export default function Login() {
   const [isLoginMode, setIsLoginMode]=useState(true)
   const [showErrorEmail, setShowErrorEmail]=useState(false)
   const [showErrorPassword, setShowErrorPassword]=useState(false)
   const [showErrorName, setShowErrorName]=useState(false)
-  const [isLoading, setIsLoading]=useState(false)
-  const [loadingError, setLoadingError]=useState(false)
   const [alertOpen, setAlertOpen]=useState(false)
-  const {setAuthSucceed, authSucceed}= useContext(UserContext)
+  const {setAuthSucceed, authSucceed, setUserId}= useContext(UserContext)
+  const {isLoading, loadingError,sendRequest}= useHttpClient()
   
   const switchModeHandler=()=>{
     setIsLoginMode(prev=>!prev)
@@ -53,35 +54,18 @@ export default function Login() {
     //validate the form
     if(validateForm(e)){
       let form
-      setIsLoading(true)
       if(isLoginMode){
         form ={
           email: email,
           password:password
         }
-        console.log(form)
+
         try {
-          const response= await fetch('http://localhost:7000/api/users/login',{
-            method:"POST",
-            headers:{
-              "Content-Type":"application/json"
-            },
-            body:JSON.stringify({
-              email:form.email,
-              password:form.password
-            })
-          })
-          const responseData= await response.json()
-          if(!response.ok){
-            throw new Error(responseData.message)
-          }
-          console.log(responseData)
-          setIsLoading(false)
+          const responseData= await sendRequest('http://localhost:7000/api/users/login',"POST",JSON.stringify({email:form.email,password:form.password}), {"Content-Type":"application/json"})
+          setUserId(responseData.user._id)
           setAuthSucceed(true)
         } catch (err) {
-          console.log(err)
-          setIsLoading(false)
-          setLoadingError(err.message || 'Something went wrong, please try it again')
+          
         }
         setAlertOpen(true)
       }else{
@@ -91,28 +75,16 @@ export default function Login() {
           password:password
         }
         try {
-          const response= await fetch('http://localhost:7000/api/users/signup',{
-            method:"POST",
-            headers:{
+          const responseData= await sendRequest('http://localhost:7000/api/users/signup',"POST",JSON.stringify({
+            name:form.name,
+            email:form.email,
+            password:form.password
+          }),{
               "Content-Type":"application/json"
-            },
-            body:JSON.stringify({
-              name:form.name,
-              email:form.email,
-              password:form.password
-            })
           })
-          const responseData= await response.json()
-          if(!response.ok){
-            throw new Error(responseData.message)
-          }
-          console.log(responseData)
-          setIsLoading(false)
+          setUserId(responseData.user._id)
           setAuthSucceed(true)
         } catch (err) {
-          console.log(err)
-          setIsLoading(false)
-          setLoadingError(err.message || 'Something went wrong, please try it again')
         }
         setAlertOpen(true)
       }

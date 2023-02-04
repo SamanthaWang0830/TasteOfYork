@@ -1,7 +1,10 @@
-import { Box, Grid, Typography, Button ,Modal , Backdrop,Fade, TextField} from "@mui/material";
-import { useState } from "react";
+import { Box, Grid, Typography, Button ,CircularProgress} from "@mui/material";
+import { useState ,useContext} from "react";
+import { UserContext } from "../contexts/user-context";
 import PickItem from "../components/pickItem";
 import {AiFillFolderAdd} from 'react-icons/ai';
+import CreateNewMeal from "../components/createNewMeal";
+import useHttpClient from '../hooks/http-hook'
 
 const DUMMY_PICKS = [
   {
@@ -46,12 +49,26 @@ const DUMMY_PICKS = [
   },
 ];
 const StudentsPicks = () => {
+  const {isLoading, loadingError,sendRequest}= useHttpClient()
+  const {userId}=useContext(UserContext)
+  console.log(userId)
   const [form, setForm] = useState(false);
   const openFormHandler = () => {
     setForm(true);
   };
-  const sumbitHanlder = (e) => {
+  const submitHanlder =async (e) => {
     e.preventDefault();
+    const data = new FormData(e.currentTarget);
+    const name = data.get('name');
+    const description = data.get('description');
+    try {
+      const responseData= await sendRequest('http://localhost:7000/api/meals',"POST",JSON.stringify({
+        name,
+        description,
+        creator:userId
+      }), {"Content-Type":"application/json"})
+    } catch (err) {
+    }
     setForm(false);
   };
 
@@ -87,59 +104,9 @@ const StudentsPicks = () => {
           </Button>
         </Grid>
       </Grid>
+     
+      <CreateNewMeal submitHanlder={submitHanlder} form={form} isLoading={isLoading}/>
       
-      
-      {
-        <Modal
-        aria-labelledby="transition-modal-title"
-        aria-describedby="transition-modal-description"
-        open={form}
-        /* onClose={sumbitHanlder} */
-        closeAfterTransition
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500,
-        }}
-        >
-          <Fade in={form}>
-            <Box sx={{
-              position: 'absolute',
-              top: '50%',
-              left: '50%',
-              transform: 'translate(-50%, -50%)',
-              bgcolor: 'background.paper',
-              border: '2px solid #000',
-              boxShadow: 24,
-              padding:2
-            }}>
-              <Typography id="transition-modal-title" variant="h4" component="h2">
-                Enter Your Favourite Meal 
-              </Typography>
-              <Box component="form" noValidate onSubmit={sumbitHanlder} sx={{ mt: 1 }}>
-                <TextField
-                  margin="normal"
-                  required
-                  fullWidth
-                  id="name"
-                  label="name"
-                  name="name"
-                />
-                <TextField
-                  margin="normal"
-                  required
-                  fullWidth
-                  name="description"
-                  label="Description"
-                  id="description"
-                  multiline
-                  rows={4}
-                />
-                <Button variant="contained" type="submit" fullWidth sx={{ mt: 3, mb: 2 }}>Submit</Button>
-              </Box>
-            </Box>
-          </Fade>
-        </Modal>
-      }
 
       <Grid 
         container 
