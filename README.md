@@ -3,3 +3,4 @@
 ### user can have a look at which meal created by her/himself
 ### one user can have several meals, but one meal only belongs to one user
 ### other users can like or dislike meals
+### when the user delete or update one meal, the page automatically rerender

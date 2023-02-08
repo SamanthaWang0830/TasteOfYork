@@ -3,7 +3,7 @@ import { useState ,useContext} from "react";
 import { UserContext } from "../contexts/user-context";
 import PickItem from "../components/pickItem";
 import {AiFillFolderAdd} from 'react-icons/ai';
-import CreateNewMeal from "../components/createNewMeal";
+import CreateOrUpdateMeal from "../components/createOrUpdateMeal";
 import useHttpClient from '../hooks/http-hook'
 
 const DUMMY_PICKS = [
@@ -52,9 +52,9 @@ const StudentsPicks = () => {
   const {isLoading, loadingError,sendRequest}= useHttpClient()
   const {userId}=useContext(UserContext)
   console.log(userId)
-  const [form, setForm] = useState(false);
+  const [showForm, setShowForm] = useState(false);
   const openFormHandler = () => {
-    setForm(true);
+    setShowForm(true);
   };
   const submitHanlder =async (e) => {
     e.preventDefault();
@@ -69,7 +69,7 @@ const StudentsPicks = () => {
       }), {"Content-Type":"application/json"})
     } catch (err) {
     }
-    setForm(false);
+    setShowForm(false);
   };
 
   return (
@@ -105,7 +105,7 @@ const StudentsPicks = () => {
         </Grid>
       </Grid>
      
-      <CreateNewMeal submitHanlder={submitHanlder} form={form} isLoading={isLoading}/>
+      <CreateOrUpdateMeal submitHanlder={submitHanlder} showForm={showForm} isLoading={isLoading}/>
       
 
       <Grid 

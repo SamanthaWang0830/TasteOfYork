@@ -7,7 +7,7 @@ import { UserContext } from "../../contexts/user-context";
 
 
 export default function Header() {
-  const {authSucceed, setAuthSucceed} = useContext(UserContext)
+  const {authSucceed, setAuthSucceed,userId} = useContext(UserContext)
   //if window width change to below 600, then navigation should change to menu version
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   useEffect(() => {
@@ -48,7 +48,7 @@ export default function Header() {
               <>
                 <Button onClick={clickLogoutHandler}>Log Out</Button>
                 <h4>
-                  <Link style={{textDecoration: 'none', color:'gray'}} to="/myMeals" >MyMeals</Link>
+                  <Link style={{textDecoration: 'none', color:'gray'}} to={`/${userId}/places`} >MyMeals</Link>
                 </h4>
               </>
             ):(

@@ -1,12 +1,12 @@
 import { Box,Typography, Button ,Modal , Backdrop,Fade, TextField, CircularProgress} from "@mui/material";
 
-const CreateNewMeal=({form, submitHanlder, isLoading})=>{
+const CreateOrUpdateMeal=({showForm, submitHanlder, form, isLoading})=>{
 
     return (
         <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
-        open={form}
+        open={showForm}
         /* onClose={sumbitHanlder} */
         closeAfterTransition
         BackdropComponent={Backdrop}
@@ -14,7 +14,7 @@ const CreateNewMeal=({form, submitHanlder, isLoading})=>{
           timeout: 500,
         }}
         >
-          <Fade in={form}>
+          <Fade in={showForm}>
             {
                 isLoading? (
                     <CircularProgress 
@@ -24,8 +24,8 @@ const CreateNewMeal=({form, submitHanlder, isLoading})=>{
                             top: '50%',
                             left: '50%',
                             transform: 'translate(-50%, -50%)'
-                          }}
-                        />
+                        }}
+                    />
                 ):(
                     <Box sx={{
                         position: 'absolute',
@@ -48,6 +48,7 @@ const CreateNewMeal=({form, submitHanlder, isLoading})=>{
                             id="name"
                             label="name"
                             name="name"
+                            defaultValue={form.name || ''}
                             />
                             <TextField
                             margin="normal"
@@ -56,6 +57,7 @@ const CreateNewMeal=({form, submitHanlder, isLoading})=>{
                             name="description"
                             label="Description"
                             id="description"
+                            defaultValue={form.description || ''}
                             multiline
                             rows={4}
                             />
@@ -69,4 +71,4 @@ const CreateNewMeal=({form, submitHanlder, isLoading})=>{
         </Modal>
     )
 }
-export default CreateNewMeal
+export default CreateOrUpdateMeal
