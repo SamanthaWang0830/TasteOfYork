@@ -30,7 +30,7 @@ const PickItem = ({ pick }) => {
     >
       <CardMedia
         sx={{width: '100%', height: {xs:'50vw',sm:'20vw'}, mt:3}} 
-        image={image} 
+        image={`http://localhost:7000/${image}`} 
         alt={name}
       />
       <CardContent>

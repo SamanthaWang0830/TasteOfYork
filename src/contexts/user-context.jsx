@@ -5,11 +5,14 @@ export const UserContext= createContext({
     setAuthSucceed:()=>{},
     userId:null,
     setUserId:()=>{},
+    avatar:null,
+    setAvatar:()=>{}
 })
 
 export const UserProvider=({children})=>{
     const [authSucceed, setAuthSucceed]= useState(false)
     const [userId, setUserId]= useState(null)
-    const value={authSucceed, setAuthSucceed, userId,setUserId}
+    const [avatar,setAvatar]= useState(null)
+    const value={authSucceed, setAuthSucceed, userId,setUserId, avatar, setAvatar}
     return <UserContext.Provider value={value}>{children}</UserContext.Provider>
 }

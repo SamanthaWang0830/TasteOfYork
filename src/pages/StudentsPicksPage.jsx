@@ -105,7 +105,7 @@ const StudentsPicks = () => {
         </Grid>
       </Grid>
      
-      <CreateOrUpdateMeal submitHanlder={submitHanlder} showForm={showForm} isLoading={isLoading}/>
+      <CreateOrUpdateMeal submitHanlder={submitHanlder} showForm={showForm} isLoading={isLoading} form={{name:'', description:''}}/>
       
 
       <Grid 

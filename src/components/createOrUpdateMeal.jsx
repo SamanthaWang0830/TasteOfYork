@@ -1,4 +1,6 @@
 import { Box,Typography, Button ,Modal , Backdrop,Fade, TextField, CircularProgress} from "@mui/material";
+import ImageUpload from "./imageUpload/imageUpload";
+
 
 const CreateOrUpdateMeal=({showForm, submitHanlder, form, isLoading})=>{
 
@@ -61,6 +63,7 @@ const CreateOrUpdateMeal=({showForm, submitHanlder, form, isLoading})=>{
                             multiline
                             rows={4}
                             />
+                            <ImageUpload />
                             <Button variant="contained" type="submit" fullWidth sx={{ mt: 3, mb: 2 }}>Submit</Button>
                         </Box>
                     </Box>

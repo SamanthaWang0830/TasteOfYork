@@ -1,13 +1,12 @@
 import React,{useState,useEffect, useContext} from "react";
-import {Button, Breadcrumbs, Menu, MenuItem}from "@mui/material";
+import {Button, Breadcrumbs, Menu, MenuItem, Avatar}from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Outlet, Link } from "react-router-dom";
 import './Header.css'
 import { UserContext } from "../../contexts/user-context";
 
-
 export default function Header() {
-  const {authSucceed, setAuthSucceed,userId} = useContext(UserContext)
+  const {authSucceed, setAuthSucceed,userId, avatar} = useContext(UserContext)
   //if window width change to below 600, then navigation should change to menu version
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   useEffect(() => {
@@ -46,6 +45,7 @@ export default function Header() {
           {
             authSucceed? (
               <>
+                <Avatar src={`http://localhost:7000/${avatar}`}/>
                 <Button onClick={clickLogoutHandler}>Log Out</Button>
                 <h4>
                   <Link style={{textDecoration: 'none', color:'gray'}} to={`/${userId}/places`} >MyMeals</Link>

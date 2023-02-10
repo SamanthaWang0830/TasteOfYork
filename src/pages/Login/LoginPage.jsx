@@ -3,7 +3,7 @@ import { TextField, Button, Box , Typography, CircularProgress, Snackbar, Alert}
 import { validateEmail, validatePassword } from './validation';
 import { UserContext } from "../../contexts/user-context";
 import useHttpClient from '../../hooks/http-hook'
-
+import ImageUpload from "../../components/imageUpload/imageUpload";
 
 export default function Login() {
   const [isLoginMode, setIsLoginMode]=useState(true)
@@ -11,8 +11,10 @@ export default function Login() {
   const [showErrorPassword, setShowErrorPassword]=useState(false)
   const [showErrorName, setShowErrorName]=useState(false)
   const [alertOpen, setAlertOpen]=useState(false)
-  const {setAuthSucceed, authSucceed, setUserId}= useContext(UserContext)
+  const {setAuthSucceed, authSucceed, setUserId,setAvatar}= useContext(UserContext)
   const {isLoading, loadingError,sendRequest}= useHttpClient()
+  //image file
+  const [file, setFile] = useState()
   
   const switchModeHandler=()=>{
     setIsLoginMode(prev=>!prev)
@@ -24,11 +26,13 @@ export default function Login() {
     setAlertOpen(false);
   };
 
+  let data
   let name;
   let email;
   let password;
+  let image;
   const validateForm=(e)=>{
-    const data = new FormData(e.currentTarget);
+    data = new FormData(e.currentTarget);
     email = data.get('email');
     password = data.get('password');
     name=data.get('name');
@@ -62,31 +66,32 @@ export default function Login() {
 
         try {
           const responseData= await sendRequest('http://localhost:7000/api/users/login',"POST",JSON.stringify({email:form.email,password:form.password}), {"Content-Type":"application/json"})
-          setUserId(responseData.user._id)
+          setUserId(responseData.user._id) 
+          setAvatar(responseData.user.image)
           setAuthSucceed(true)
         } catch (err) {
           
         }
         setAlertOpen(true)
       }else{
-        form ={
-          name:name,
-          email:email,
-          password:password
+        if(file){
+          form ={
+            name:name,
+            email:email,
+            password:password,
+            image:file,
+          }
+          console.log(form)
+          try {
+            data.append('image',file)
+            const responseData= await sendRequest('http://localhost:7000/api/users/signup',"POST",data)
+            setUserId(responseData.user._id)
+            setAvatar(responseData.user.image)
+            setAuthSucceed(true)
+          } catch (err) {
+          }
+          setAlertOpen(true)
         }
-        try {
-          const responseData= await sendRequest('http://localhost:7000/api/users/signup',"POST",JSON.stringify({
-            name:form.name,
-            email:form.email,
-            password:form.password
-          }),{
-              "Content-Type":"application/json"
-          })
-          setUserId(responseData.user._id)
-          setAuthSucceed(true)
-        } catch (err) {
-        }
-        setAlertOpen(true)
       }
     }
   }
@@ -114,6 +119,9 @@ export default function Login() {
                         name="name"
                       />
                     )}
+
+                    {!isLoginMode && <ImageUpload file={file} setFile={setFile}/>}
+
                     <TextField
                       error={showErrorEmail}
                       helperText={showErrorEmail}
@@ -160,8 +168,14 @@ export default function Login() {
                   {loadingError}
                 </Alert>
               )
-            }  
+            }
           </Snackbar>
+          <Snackbar open={!file&& !isLoginMode} autoHideDuration={4000} onClose={closeAlertHandler}>
+              <Alert onClose={closeAlertHandler} severity="error" sx={{ width: '100%' }}>
+                Please upload your avatar
+              </Alert>
+          </Snackbar>
+
         </Box>
     </>
   )
