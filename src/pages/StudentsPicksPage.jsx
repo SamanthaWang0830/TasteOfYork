@@ -1,10 +1,11 @@
-import { Box, Grid, Typography, Button ,CircularProgress} from "@mui/material";
-import { useState ,useContext} from "react";
+import { Box, Grid, Typography, Button} from "@mui/material";
+import { useState ,useContext,useEffect} from "react";
 import { UserContext } from "../contexts/user-context";
 import PickItem from "../components/pickItem";
 import {AiFillFolderAdd} from 'react-icons/ai';
 import CreateOrUpdateMeal from "../components/createOrUpdateMeal";
 import useHttpClient from '../hooks/http-hook'
+import AlertMessage from "../components/AlertMessage";
 
 const DUMMY_PICKS = [
   {
@@ -49,27 +50,53 @@ const DUMMY_PICKS = [
   },
 ];
 const StudentsPicks = () => {
-  const {isLoading, loadingError,sendRequest}= useHttpClient()
+  const [loadedPicks, setLoadedPicks]=useState()
+  //when user doesn't login/signup
+  const [alert, setAlert]=useState(false)
+  const [force,setForce]=useState(0)
+  const {isLoading,sendRequest}= useHttpClient()
   const {userId}=useContext(UserContext)
-  console.log(userId)
+
+  
+
+  //fetch all the meals from mongoDB
+  useEffect(() => {
+    const fetchPicks= async () => {
+      try {
+        const responseData = await sendRequest(
+          `http://localhost:7000/api/meals`
+        );
+        setLoadedPicks(responseData.meals);
+      } catch (err) {}
+    };
+    fetchPicks();
+  }, [sendRequest,force]);
+
+  // create a new Meal
+  const [file,setFile]=useState()
+  let form= {name:'', description:''}
   const [showForm, setShowForm] = useState(false);
   const openFormHandler = () => {
-    setShowForm(true);
+    if(userId){
+      setShowForm(true);
+    }else{
+      setAlert(true)
+    }
   };
   const submitHanlder =async (e) => {
     e.preventDefault();
-    const data = new FormData(e.currentTarget);
-    const name = data.get('name');
-    const description = data.get('description');
-    try {
-      const responseData= await sendRequest('http://localhost:7000/api/meals',"POST",JSON.stringify({
-        name,
-        description,
-        creator:userId
-      }), {"Content-Type":"application/json"})
-    } catch (err) {
+    const data= new FormData(e.currentTarget);
+    if(data.get('name') && data.get('description') && file){
+      try {
+        console.log(file)
+        console.log(userId)
+        data.append('image',file)
+        data.append('creator',userId)
+        await sendRequest('http://localhost:7000/api/meals',"POST",data)
+        setForce(pre=>pre+1)
+      } catch (err) {}
+      setShowForm(false);
     }
-    setShowForm(false);
   };
 
   return (
@@ -104,8 +131,10 @@ const StudentsPicks = () => {
           </Button>
         </Grid>
       </Grid>
+      
+      <AlertMessage open={alert} setClose={setAlert}>Please go to Auth to Login/Signup</AlertMessage>
      
-      <CreateOrUpdateMeal submitHanlder={submitHanlder} showForm={showForm} isLoading={isLoading} form={{name:'', description:''}}/>
+      <CreateOrUpdateMeal submitHanlder={submitHanlder} showForm={showForm} setShowForm={setShowForm} isLoading={isLoading} form={form} file={file} setFile={setFile} update={false}/>
       
 
       <Grid 
@@ -115,7 +144,7 @@ const StudentsPicks = () => {
           justifyContent: "space-around"
         }}
       >
-        {DUMMY_PICKS.map((pick) => (
+        {loadedPicks? (loadedPicks.map((pick) => (
           <Grid 
             xs={12} sm={6} 
             key={pick.id}
@@ -126,7 +155,7 @@ const StudentsPicks = () => {
           >
             <PickItem pick={pick} />
           </Grid>
-        ))}
+        ))):(<div>don't have any picked meal yet, please create one</div>)}
       </Grid>
     </Box>
   )

@@ -10,8 +10,8 @@ const App = () => {
   return (
     <Routes>
       <Route path="/" element={<Header/>}>
-        <Route path="/:userId/places" exact element={<MyMealsPage/>} />
         <Route index element={<HomePage/>}/>
+        <Route path="/:userId/places" exact element={<MyMealsPage/>} />
         <Route path='findRestaurants' element={<FindRestaurantsPage/>} />
         <Route path="studentsPicks"  element={<StudentsPicksPage/>} />
         <Route path="login" element={<LoginPage/>} />

@@ -4,6 +4,7 @@ import { validateEmail, validatePassword } from './validation';
 import { UserContext } from "../../contexts/user-context";
 import useHttpClient from '../../hooks/http-hook'
 import ImageUpload from "../../components/imageUpload/imageUpload";
+import AlertMessage from "../../components/AlertMessage";
 
 export default function Login() {
   const [isLoginMode, setIsLoginMode]=useState(true)
@@ -26,11 +27,10 @@ export default function Login() {
     setAlertOpen(false);
   };
 
-  let data
+  let data;
   let name;
   let email;
   let password;
-  let image;
   const validateForm=(e)=>{
     data = new FormData(e.currentTarget);
     email = data.get('email');
@@ -63,7 +63,6 @@ export default function Login() {
           email: email,
           password:password
         }
-
         try {
           const responseData= await sendRequest('http://localhost:7000/api/users/login',"POST",JSON.stringify({email:form.email,password:form.password}), {"Content-Type":"application/json"})
           setUserId(responseData.user._id) 
@@ -75,14 +74,8 @@ export default function Login() {
         setAlertOpen(true)
       }else{
         if(file){
-          form ={
-            name:name,
-            email:email,
-            password:password,
-            image:file,
-          }
-          console.log(form)
           try {
+            console.log(file)
             data.append('image',file)
             const responseData= await sendRequest('http://localhost:7000/api/users/signup',"POST",data)
             setUserId(responseData.user._id)
@@ -157,7 +150,7 @@ export default function Login() {
                 </>
               )
           }
-          <Snackbar open={alertOpen} autoHideDuration={4000} onClose={closeAlertHandler}>
+          <Snackbar open={alertOpen} autoHideDuration={4000} onClose={closeAlertHandler} anchorOrigin={{ vertical: 'top', horizontal: 'center' }}>
             {
               authSucceed? (
                 <Alert onClose={closeAlertHandler} severity="success" sx={{ width: '100%' }}>
@@ -170,12 +163,7 @@ export default function Login() {
               )
             }
           </Snackbar>
-          <Snackbar open={!file&& !isLoginMode} autoHideDuration={4000} onClose={closeAlertHandler}>
-              <Alert onClose={closeAlertHandler} severity="error" sx={{ width: '100%' }}>
-                Please upload your avatar
-              </Alert>
-          </Snackbar>
-
+          <AlertMessage open={!file&& !isLoginMode}>Please upload your avatar </AlertMessage>
         </Box>
     </>
   )

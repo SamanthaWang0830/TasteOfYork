@@ -1,7 +1,7 @@
 import useHttpClient from "../hooks/http-hook"
 import { useEffect,useState } from "react"
 import { useParams } from "react-router-dom"
-import {Grid, CircularProgress} from "@mui/material";
+import {Grid, CircularProgress,Box,Typography} from "@mui/material";
 import MyItem from "../components/myItem";
 import CreateOrUpdateMeal from "../components/createOrUpdateMeal";
 
@@ -9,7 +9,7 @@ import CreateOrUpdateMeal from "../components/createOrUpdateMeal";
 const MyMealsPage=()=>{
     //load the whole page part 
     const [loadedMeal, setLoadedMeal]=useState()
-    const {isLoading, error,sendRequest}=useHttpClient()
+    const {isLoading, sendRequest}=useHttpClient()
     const [forceRender, setForceRender] = useState(0);
     const [updatedMealId, setUpdatedMealId]=useState()
     const userId= useParams().userId
@@ -62,6 +62,32 @@ const MyMealsPage=()=>{
     }
 
     return (
+    <Box 
+      sx={{ 
+        flexGrow: 1,
+        marginX:{xs:2,sm:4,md:6},
+      }}
+    >
+        <Grid  
+            sx={{
+            display: 'flex',
+            justifyContent: "space-between",
+            backgroundColor:'error.dark',
+            paddingX:6,
+            paddingTop:1,
+            }}
+        >
+            <Grid item xs={12} sm={10}>
+            <Typography
+                component="h1" 
+                variant="h3"
+                sx={{
+                fontFamily:"Trebuchet MS"
+                }}
+            >My Meals</Typography>
+            </Grid>
+        </Grid>
+
         <Grid 
             container 
             sx={{
@@ -81,7 +107,7 @@ const MyMealsPage=()=>{
                 />
             )}
 
-            <CreateOrUpdateMeal submitHanlder={submitHanlder} showForm={showForm} form={form} isLoading={isLoading}/>
+            <CreateOrUpdateMeal submitHanlder={submitHanlder} setShowForm={setShowForm} showForm={showForm} form={form} isLoading={isLoading} update={true}/>
 
             {
                 !isLoading && loadedMeal && (loadedMeal.map((pick) => (
@@ -99,6 +125,7 @@ const MyMealsPage=()=>{
             }
             
         </Grid>
+    </Box>
     )
 }
 export default MyMealsPage
