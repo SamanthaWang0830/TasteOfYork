@@ -7,6 +7,9 @@ const app=express()
 const fs= require('fs')
 const mongoose= require('mongoose')
 const path = require('path')
+
+require('dotenv').config()
+
 //middleware
 app.use(bodyParser.json())
 
@@ -44,7 +47,7 @@ app.use((error,req,res,next)=>{
 
 
 mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.4pj8ua1.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`).then(()=>{
-    app.listen(prcess.env.PORT || 7000)
+    app.listen(process.env.PORT || 7000)
 }).catch(err=>{
     console.log(err)
 })

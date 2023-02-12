@@ -1,8 +1,0 @@
-{
-    "env":{
-        "DB_USER":"zw",
-        "DB_PASSWORD":"QWqw1234!",
-        "DB_NAME":"meals",
-        "JWT_KEY":"secret"
-    }
-}
