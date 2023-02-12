@@ -44,7 +44,7 @@ app.use((error,req,res,next)=>{
 
 
 mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.4pj8ua1.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`).then(()=>{
-    app.listen(7000)
+    app.listen(prcess.env.PORT || 7000)
 }).catch(err=>{
     console.log(err)
 })
