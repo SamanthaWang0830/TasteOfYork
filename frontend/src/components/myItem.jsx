@@ -19,7 +19,7 @@ const MyItem=({pick,updateHandler, deleteHandler})=>{
         >
             <CardMedia
                 sx={{width: '100%', height: {xs:'50vw',sm:'20vw'}, mt:3}} 
-                image={`http://localhost:7000/${image}`} 
+                image={process.env.REACT_APP_ASSET_URL+`/${image}`} 
                 alt={name}
             />
             <CardContent>
