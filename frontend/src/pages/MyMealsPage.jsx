@@ -17,7 +17,7 @@ const MyMealsPage=()=>{
     useEffect(()=>{
         const fetchMeals=async()=>{
             try {
-                const responseData=await sendRequest(`http://localhost:7000/api/meals/user/${userId}`)
+                const responseData=await sendRequest(`${process.env.REACT_APP_BACKEND_URL}/meals/user/${userId}`)
                 setLoadedMeal(responseData.meals)
             } catch (err) {}
         }
@@ -51,13 +51,13 @@ const MyMealsPage=()=>{
           setForceRender(prev => prev + 1)
         } catch (err) {
         }
-        setShowForm(false);
+        setShowForm(false); 
     };
 
     //when delete one item then rerender the page
     const deleteHandler=async(e)=>{
         try {
-            await sendRequest(`http://localhost:7000/api/meals/${e.currentTarget.id}`,'DELETE',null,{Authorization:"Bearer "+token})
+            await sendRequest(`${process.env.REACT_APP_BACKEND_URL}/meals/${e.currentTarget.id}`,'DELETE',null,{Authorization:"Bearer "+token})
             setForceRender(prev => prev + 1)
         } catch (err) {}
     }
