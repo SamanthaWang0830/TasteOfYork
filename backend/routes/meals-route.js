@@ -2,8 +2,13 @@ const express= require('express')
 const {check}= require('express-validator')
 const router=express.Router();
 const mealsControllers=require('../controllers/meals-controllers')
-const fileUpload= require('../middleware/file-upload')
 const checkAuth= require('../middleware/check-auth')
+
+//改
+const multer=require('multer')
+const storage= multer.memoryStorage()
+const upload=multer({storage:storage})
+
 
 
 router.patch('/:mid/likePost',mealsControllers.likePost)
@@ -19,7 +24,7 @@ router.use(checkAuth)
 
 router.post(
     '/',
-    fileUpload.single('image'),
+    upload.single('image'),
     [
         check('name').not().isEmpty(), 
         check('description').isLength({min:3})

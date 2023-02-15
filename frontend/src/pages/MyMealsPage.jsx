@@ -13,10 +13,11 @@ const MyMealsPage=()=>{
     const [updatedMealId, setUpdatedMealId]=useState()
     const {token}=useContext(UserContext)
     const userId= useParams().userId
+    console.log(userId)
     useEffect(()=>{
         const fetchMeals=async()=>{
             try {
-                const responseData=await sendRequest(process.env.REACT_APP_BACKEND_URL+`/meals/user/${userId}`)
+                const responseData=await sendRequest(`http://localhost:7000/api/meals/user/${userId}`)
                 setLoadedMeal(responseData.meals)
             } catch (err) {}
         }
@@ -56,7 +57,7 @@ const MyMealsPage=()=>{
     //when delete one item then rerender the page
     const deleteHandler=async(e)=>{
         try {
-            await sendRequest(process.env.REACT_APP_BACKEND_URL+`/meals/${e.currentTarget.id}`,'DELETE',null,{Authorization:"Bearer "+token})
+            await sendRequest(`http://localhost:7000/api/meals/${e.currentTarget.id}`,'DELETE',null,{Authorization:"Bearer "+token})
             setForceRender(prev => prev + 1)
         } catch (err) {}
     }

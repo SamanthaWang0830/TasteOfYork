@@ -46,7 +46,7 @@ export default function Header() {
           {
             token? (
               <>
-                <Avatar src={`${process.env.REACT_APP_ASSET_URL}/${avatar}`} size={15}/>
+                <Avatar src={avatar} size={15}/>
                 <Button onClick={clickLogoutHandler}>Log Out</Button>
                 <h4>
                   <Link style={{textDecoration: 'none', color:'gray'}} to={`/${userId}/places`} >MyMeals</Link>

@@ -6,6 +6,58 @@ const User= require('../models/user');
 const mongoose= require('mongoose')
 const fs= require('fs')
 
+//改
+const crypto= require('crypto')
+const generateFileName = (bytes = 32) => crypto.randomBytes(bytes).toString('hex')
+
+const { S3Client, PutObjectCommand, DeleteObjectCommand, GetObjectCommand } =require("@aws-sdk/client-s3")
+const { getSignedUrl }= require("@aws-sdk/s3-request-presigner")
+require('dotenv').config()
+
+const bucketName = process.env.BUCKET_NAME
+const region = process.env.BUCKET_REGION
+const accessKeyId = process.env.ACCESS_KEY
+const secretAccessKey = process.env.SECRET_ACCESS_KEY
+
+const s3Client = new S3Client({
+    region,
+    credentials: {
+      accessKeyId,
+      secretAccessKey
+    }
+})
+const uploadFile=(fileBuffer, fileName, mimetype) =>{
+    const uploadParams = {
+      Bucket: bucketName,
+      Body: fileBuffer,
+      Key: fileName,
+      ContentType: mimetype
+    }
+  
+    return s3Client.send(new PutObjectCommand(uploadParams));
+}
+const getObjectSignedUrl=async(key) =>{
+    const params = {
+      Bucket: bucketName,
+      Key: key
+    }
+  
+    const command = new GetObjectCommand(params);
+    const seconds = 60
+    const url = await getSignedUrl(s3Client, command, { expiresIn: seconds });
+  
+    return url
+}
+const deleteFile=(fileName)=> {
+    const deleteParams = {
+      Bucket: bucketName,
+      Key: fileName,
+    }
+  
+    return s3Client.send(new DeleteObjectCommand(deleteParams));
+}
+//
+
 
 const getMealById=async(req,res,next)=>{
     const mealId= req.params.mid 
@@ -31,6 +83,9 @@ const getAllMeals=async(req,res,next)=>{
         const error= new HttpError('could not find meals', 500)
         return next(error)
     }
+    for (let meal of meals) {
+        meal.image = await getObjectSignedUrl(meal.image)
+    }
     res.json({meals: meals.map(meal=>meal.toObject({getters:true}))})
 }
 
@@ -47,21 +102,36 @@ const getMealsByUserId=async(req,res,next)=>{
     if(!userWithMeals || userWithMeals.meals.length==0){
         return next(new HttpError('could not find the user',404))
     }
+
+    //把meal.image改成url
+    for (let meal of userWithMeals.meals) {
+        meal.image = await getObjectSignedUrl(meal.image)
+    }
+    //
+    
     //返回的是一个array 所以要用map
     res.json({meals:userWithMeals.meals.map(meal=>meal.toObject({getters:true}))})
 }
 
 const createMeal=async(req,res,next)=>{
+    //已经出现的错误
     const errors= validationResult(req)
     if(!errors.isEmpty()){
         console.log(errors)
         throw new HttpError('invalid input',422)
     }
+
+
     const {name,description}=req.body
+    //建新的meal
+    const file=req.file
+    const imageName = generateFileName()
+    await uploadFile(file.buffer,imageName,file.mimetype)
+
     const createdMeal = new Meal({
         name,
         description,
-        image:req.file.path,
+        image:imageName,
         creator:req.userData.userId
     })
     //看看这个user存不存在
@@ -167,6 +237,10 @@ const deleteMealById=async(req,res,next)=>{
         return next(error)
     }
 
+    //删除掉在aws中的图片
+    await deleteFile(meal.image)
+    //
+
     fs.unlink(imagePath,err=>console.log(err))
 
     res.status(200).json({message:'deleted'})
@@ -209,6 +283,8 @@ const dislikePost=async(req,res,next)=>{
     }
     res.status(200).json(updatedMeal)
 }
+
+
 
 
 exports.getMealById=getMealById

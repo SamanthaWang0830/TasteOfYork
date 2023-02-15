@@ -20,7 +20,7 @@ const StudentsPicks = () => {
     const fetchPicks= async () => {
       try {
         const responseData = await sendRequest(
-          process.env.REACT_APP_BACKEND_URL+'/meals'
+          'http://localhost:7000/api/meals'
         );
         setLoadedPicks(responseData.meals);
       } catch (err) {}
@@ -45,7 +45,7 @@ const StudentsPicks = () => {
     if(data.get('name') && data.get('description') && file){
       try {
         data.append('image',file)
-        await sendRequest(process.env.REACT_APP_BACKEND_URL+'/meals',"POST",data,{
+        await sendRequest('http://localhost:7000/api/meals',"POST",data,{
           Authorization:"Bearer "+token
         })
         setForce(pre=>pre+1)

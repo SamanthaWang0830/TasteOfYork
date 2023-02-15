@@ -65,7 +65,7 @@ export default function Login() {
           password:password
         }
         try {
-          const responseData= await sendRequest(`${process.env.REACT_APP_BACKEND_URL}/users/login`,"POST",JSON.stringify({email:form.email,password:form.password}), {"Content-Type":"application/json"})
+          const responseData= await sendRequest('http://localhost:7000/api/users/login',"POST",JSON.stringify({email:form.email,password:form.password}), {"Content-Type":"application/json"})
           login(responseData.userId, responseData.token,responseData.image)
         } catch (err) {
         }
@@ -74,7 +74,7 @@ export default function Login() {
         if(file){
           try {
             data.append('image',file)
-            const responseData= await sendRequest(process.env.REACT_APP_BACKEND_URL+'/users/signup',"POST",data)
+            const responseData= await sendRequest('http://localhost:7000/api/users/signup',"POST",data)
             login(responseData.userId, responseData.token,responseData.image)
           } catch (err) {
           }
